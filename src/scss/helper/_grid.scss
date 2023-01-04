@@ -1,0 +1,73 @@
+/* Grid */
+
+body {
+  --screen-width: 100vw;
+}
+
+.grid::before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+
+  content: "";
+  pointer-events: none;
+
+  --grid-color: rgb(255 0 0 / 0.1);
+  --grid-sides: 15px;
+  --grid-gutter: 30px;
+  --grid-columns: 12;
+  --grid-max-width: 1320px;
+  --grid-column-width: calc(
+    (100% - var(--grid-gutter) * var(--grid-columns)) / var(--grid-columns)
+  );
+
+  border: solid rgba(#007EFF, 0.2);
+  border-width: 0 max(calc((var(--screen-width) - var(--grid-max-width)) / 2), calc(var(--grid-sides) - var(--grid-gutter) / 2));
+
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0,
+    transparent calc(var(--grid-gutter) / 2),
+    var(--grid-color) calc(var(--grid-gutter) / 2),
+    var(--grid-color) calc(var(--grid-column-width) + var(--grid-gutter) / 2),
+    transparent calc(var(--grid-column-width) + var(--grid-gutter) / 2),
+    transparent calc(var(--grid-column-width) + var(--grid-gutter))
+  );
+
+  background-repeat: no-repeat;
+}
+
+@media (max-width: $laptop) {
+  .grid::before {
+    --grid-columns: 12;
+    --grid-max-width: 1140px;
+  }
+}
+
+@media (max-width: $tablet) {
+  .grid::before {
+    --grid-columns: 8;
+    --grid-max-width: 960px;
+  }
+}
+
+@media (max-width: $tablet-sm) {
+  .grid::before {
+    --grid-max-width: 720px;
+  }
+}
+
+@media (max-width: $mobile-big) {
+  .grid::before {
+    --grid-max-width: 540px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .grid::before {
+    --grid-columns: 4;
+  }
+}
