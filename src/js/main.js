@@ -1,1 +1,3 @@
-console.log(1)
+import development from './module/development.js'
+
+development()
