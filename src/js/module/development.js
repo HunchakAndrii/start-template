@@ -1,5 +1,4 @@
 const development = () => {
-
   // Device Width
   const deviceWidth = document.createElement('div')
   deviceWidth.style.position = 'fixed'
@@ -39,7 +38,7 @@ const development = () => {
   links.forEach(link => [
     link.addEventListener('click', e => {
       e.preventDefault()
-    })
+    }),
   ])
 
   // Prevent All Forms
@@ -48,7 +47,11 @@ const development = () => {
   forms.forEach(form => [
     form.addEventListener('submit', e => {
       e.preventDefault()
-    })
+
+      const formData = new FormData(form)
+
+      console.log(formData)
+    }),
   ])
 }
 
