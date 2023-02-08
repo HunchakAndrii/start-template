@@ -46,7 +46,7 @@ const script = () => {
       webpack({
         mode: 'development',
         output: {
-          filename: 'main.js',
+          filename: 'main.min.js',
         },
       })
     )
