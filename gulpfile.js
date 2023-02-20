@@ -2,7 +2,8 @@ import gulp from 'gulp'
 import gulpSass from 'gulp-sass'
 import nodeSass from 'sass'
 import pug from 'gulp-pug'
-import webpack from 'webpack-stream'
+// import webpack from 'webpack-stream'
+import esbuild from 'gulp-esbuild'
 import browsersync from 'browser-sync'
 
 const sass = gulpSass(nodeSass)
@@ -40,14 +41,22 @@ const style = () => {
 }
 
 const script = () => {
+  // return gulp
+  //   .src('./src/js/main.js')
+  // .pipe(
+  //   webpack({
+  //     mode: 'development',
+  //     output: {
+  //       filename: 'main.min.js',
+  //     },
+  //   })
+  // )
   return gulp
-    .src('./src/js/main.js')
+    .src('./src/ts/main.ts')
     .pipe(
-      webpack({
-        mode: 'development',
-        output: {
-          filename: 'main.min.js',
-        },
+      esbuild({
+        outfile: 'main.js',
+        bundle: true
       })
     )
     .pipe(gulp.dest('./dist'))
@@ -67,13 +76,13 @@ export { html, style, script, image, font, browserSync }
 export default () => {
   html()
   style()
-  script()
+  script('ts')
   image()
   font()
   browserSync()
   gulp.watch('./src/pug/**/*.pug', html)
   gulp.watch('./src/scss/**/*.scss', style)
-  gulp.watch('./src/js/**/*.js', script)
+  gulp.watch('./src/ts/**/*.ts', () => script('ts'))
   gulp.watch('./src/img/**/*', image)
   gulp.watch('./src/font/**/*', font)
 }
