@@ -2,7 +2,7 @@ import gulp from 'gulp'
 import gulpSass from 'gulp-sass'
 import nodeSass from 'sass'
 import pug from 'gulp-pug'
-// import webpack from 'webpack-stream'
+import webpack from 'webpack-stream'
 import esbuild from 'gulp-esbuild'
 import browsersync from 'browser-sync'
 
@@ -14,7 +14,7 @@ const browserSync = () => {
     server: {
       baseDir: './dist/',
     },
-    notify: false
+    notify: false,
   })
 
   gulp.watch('./dist', browserSync.reload)
@@ -25,7 +25,7 @@ const html = () => {
     .src('./src/pug/page/*.pug')
     .pipe(
       pug({
-        pretty: true
+        pretty: true,
       })
     )
     .pipe(gulp.dest('./dist'))
@@ -41,26 +41,28 @@ const style = () => {
 }
 
 const script = () => {
-  // return gulp
-  //   .src('./src/js/main.js')
-  // .pipe(
-  //   webpack({
-  //     mode: 'development',
-  //     output: {
-  //       filename: 'main.min.js',
-  //     },
-  //   })
-  // )
   return gulp
-    .src('./src/ts/main.ts')
+    .src('./src/js/main.js')
     .pipe(
-      esbuild({
-        outfile: 'main.js',
-        bundle: true
+      webpack({
+        mode: 'development',
+        output: {
+          filename: 'main.js',
+        },
       })
     )
     .pipe(gulp.dest('./dist'))
     .pipe(browsersync.stream())
+  // return gulp
+  //   .src('./src/ts/main.ts')
+  //   .pipe(
+  //     esbuild({
+  //       outfile: 'main.js',
+  //       bundle: true
+  //     })
+  //   )
+  //   .pipe(gulp.dest('./dist'))
+  //   .pipe(browsersync.stream())
 }
 
 const image = () => {
@@ -76,13 +78,13 @@ export { html, style, script, image, font, browserSync }
 export default () => {
   html()
   style()
-  script('ts')
+  script()
   image()
   font()
   browserSync()
   gulp.watch('./src/pug/**/*.pug', html)
   gulp.watch('./src/scss/**/*.scss', style)
-  gulp.watch('./src/ts/**/*.ts', () => script('ts'))
+  gulp.watch('./src/js/**/*.js', script)
   gulp.watch('./src/img/**/*', image)
   gulp.watch('./src/font/**/*', font)
 }
