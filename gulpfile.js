@@ -42,15 +42,15 @@ const style = () => {
 
 const script = () => {
   return gulp
-    .src('./src/js/main.js')
-    .pipe(
-      webpack({
-        mode: 'development',
-        output: {
-          filename: 'main.js',
-        },
-      })
-    )
+    .src('./src/js/*.js')
+    // .pipe(
+    //   webpack({
+    //     mode: 'development',
+    //     output: {
+    //       filename: 'main.js',
+    //     },
+    //   })
+    // )
     .pipe(gulp.dest('./dist'))
     .pipe(browsersync.stream())
   // return gulp
