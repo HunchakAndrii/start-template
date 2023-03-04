@@ -1,0 +1,23 @@
+.kit {
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    margin-bottom: 8px;
+  }
+
+  &__subtitle ~ &__subtitle {
+    margin-top: 50px;
+  }
+
+  &__text {
+    margin-bottom: 20px;
+  }
+
+  &__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

@@ -16,7 +16,7 @@ a {
 }
 
 button {
-  font-family: inherit;
+  // font-family: inherit;
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -27,7 +27,7 @@ select {
   font-family: inherit;
 }
 
-:where(input) {
+input {
   font-family: inherit;
   border: none;
 }

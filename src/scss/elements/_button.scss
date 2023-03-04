@@ -1,0 +1,79 @@
+$theme-colors: (
+  'primary': #0d6efd,
+  'secondary': #6c757d,
+  'success': #198754,
+  'info': #0dcaf0,
+  'warning': #ffc107,
+  'danger': #dc3545,
+  'light': #f8f9fa,
+  'dark': #212529,
+) !default;
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: $radius;
+  text-align: center;
+  user-select: none;
+  border: 1px solid;
+  font-size: 16px;
+  line-height: 1.5;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @if $color == 'light' {
+      background-color: $value;
+      border-color: $black;
+      color: $black;
+
+      &:hover {
+        background-color: mix(white, $value, 10%);
+        border-color: mix(white, $value, 10%);
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: mix(black, $value, 10%);
+        box-shadow: 0 0 0 5px rgba(black, .5);
+      }
+    } @else {
+      background-color: $value;
+      border-color: $value;
+      color: $white;
+
+      &:hover {
+        background-color: mix(black, $value, 10%);
+        border-color: mix(black, $value, 10%);
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: mix(black, $value, 10%);
+        box-shadow: 0 0 0 5px rgba($value, .5);
+      }
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    background-color: transparent;
+    border-color: $value;
+    color: $value;
+
+    &:active,
+    &:focus {
+      color: $white;
+      background-color: $value;
+      box-shadow: 0 0 0 5px rgba($value, .5);
+    }
+  }
+}

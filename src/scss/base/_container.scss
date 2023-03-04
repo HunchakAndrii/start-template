@@ -1,35 +1,21 @@
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+
 .container {
-  max-width: 1260px;
-  margin: 0 auto;
-  padding: 0 15px;
+  width: 100%;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-@media (max-width: 1399px) {
+@media (min-width: 1200px) {
   .container {
     max-width: 1140px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-@media (max-width: 991px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (max-width: 767px) {
-  .container {
-    max-width: 540px;
-  }
-}
-
-@media (max-width: 575px) {
-  .container {
-    max-width: none;
   }
 }
