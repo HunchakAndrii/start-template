@@ -1,0 +1,48 @@
+.switch-group {
+  padding: 4px;
+  margin: 100px auto;
+  display: flex;
+  width: max-content;
+  gap: 4px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  // max-inline-size: max-content;
+
+  & > legend {
+    visibility: hidden;
+    block-size: 0;
+  }
+}
+
+.group-switch {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+
+  & > * {
+    color: #495057;
+    padding: 4px;
+    grid-area: 1/1;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    transition: .3s all ease;
+  }
+
+  & > label,
+  & > input {
+    display: none;
+  }
+
+  &:hover,
+  & > input:checked ~ svg {
+    color: #4263eb;
+    fill: currentColor;
+    background-color: #e9ecef;
+  }
+}
