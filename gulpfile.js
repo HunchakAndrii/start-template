@@ -15,6 +15,17 @@ const browserSync = () => {
       baseDir: './dist/',
     },
     notify: false,
+    callbacks: {
+      ready: function (err, bs) {
+        console.log(bs.options.get('urls'))
+        bs.addMiddleware('*', function (req, res) {
+          res.writeHead(302, {
+            location: '404.html',
+          })
+          res.end('Redirecting!')
+        })
+      },
+    },
   })
 
   gulp.watch('./dist', browserSync.reload)
@@ -41,18 +52,26 @@ const style = () => {
 }
 
 const script = () => {
-  return gulp
-    .src('./src/js/*.js')
-    // .pipe(
-    //   webpack({
-    //     mode: 'development',
-    //     output: {
-    //       filename: 'main.js',
-    //     },
-    //   })
-    // )
-    .pipe(gulp.dest('./dist'))
-    .pipe(browsersync.stream())
+  return (
+    gulp
+      .src('./src/js/main.js')
+      .pipe(
+        esbuild({
+          outfile: 'main.js',
+          bundle: true,
+        })
+      )
+      // .pipe(
+      //   webpack({
+      //     mode: 'development',
+      //     output: {
+      //       filename: 'main.js',
+      //     },
+      //   })
+      // )
+      .pipe(gulp.dest('./dist'))
+      .pipe(browsersync.stream())
+  )
   // return gulp
   //   .src('./src/ts/main.ts')
   //   .pipe(
