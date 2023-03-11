@@ -17,7 +17,6 @@ const browserSync = () => {
     notify: false,
     callbacks: {
       ready: function (err, bs) {
-        console.log(bs.options.get('urls'))
         bs.addMiddleware('*', function (req, res) {
           res.writeHead(302, {
             location: '404.html',
@@ -92,6 +91,10 @@ const font = () => {
   return gulp.src('./src/font/**/*').pipe(gulp.dest('./dist/font/'))
 }
 
+const resource = () => {
+  return gulp.src('./src/resource/**/*').pipe(gulp.dest('./dist/'))
+}
+
 export { html, style, script, image, font, browserSync }
 
 export default () => {
@@ -100,10 +103,12 @@ export default () => {
   script()
   image()
   font()
+  resource()
   browserSync()
   gulp.watch('./src/pug/**/*.pug', html)
   gulp.watch('./src/scss/**/*.scss', style)
   gulp.watch('./src/js/**/*.js', script)
   gulp.watch('./src/img/**/*', image)
   gulp.watch('./src/font/**/*', font)
+  gulp.watch('./src/resource/**/*', resource)
 }
