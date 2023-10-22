@@ -1,9 +1,8 @@
 import gulp from 'gulp'
 import gulpSass from 'gulp-sass'
 import nodeSass from 'sass'
-import pug from 'gulp-pug'
+import nunjucksRender from 'gulp-nunjucks-render'
 import webpack from 'webpack-stream'
-import esbuild from 'gulp-esbuild'
 import browsersync from 'browser-sync'
 
 const sass = gulpSass(nodeSass)
@@ -19,7 +18,7 @@ const browserSync = () => {
       ready: function (err, bs) {
         bs.addMiddleware('*', function (req, res) {
           res.writeHead(302, {
-            location: '404.html',
+            location: 'error.html',
           })
           res.end('Redirecting!')
         })
@@ -32,10 +31,10 @@ const browserSync = () => {
 
 const html = () => {
   return gulp
-    .src('./src/pug/page/*.pug')
+    .src('./src/njk/**/*.njk')
     .pipe(
-      pug({
-        pretty: true,
+      nunjucksRender({
+        path: ['src/njk/layout/', 'src/njk/components/'],
       })
     )
     .pipe(gulp.dest('./dist'))
@@ -51,36 +50,18 @@ const style = () => {
 }
 
 const script = () => {
-  return (
-    gulp
-      .src('./src/js/main.js')
-      .pipe(
-        esbuild({
-          outfile: 'main.js',
-          bundle: true,
-        })
-      )
-      // .pipe(
-      //   webpack({
-      //     mode: 'development',
-      //     output: {
-      //       filename: 'main.js',
-      //     },
-      //   })
-      // )
-      .pipe(gulp.dest('./dist'))
-      .pipe(browsersync.stream())
-  )
-  // return gulp
-  //   .src('./src/ts/main.ts')
-  //   .pipe(
-  //     esbuild({
-  //       outfile: 'main.js',
-  //       bundle: true
-  //     })
-  //   )
-  //   .pipe(gulp.dest('./dist'))
-  //   .pipe(browsersync.stream())
+  return gulp
+    .src('./src/js/main.js')
+    .pipe(
+      webpack({
+        mode: 'development',
+        output: {
+          filename: 'main.js',
+        },
+      })
+    )
+    .pipe(gulp.dest('./dist'))
+    .pipe(browsersync.stream())
 }
 
 const image = () => {
@@ -105,7 +86,7 @@ export default () => {
   font()
   resource()
   browserSync()
-  gulp.watch('./src/pug/**/*.pug', html)
+  gulp.watch('./src/njk/**/*.njk', html)
   gulp.watch('./src/scss/**/*.scss', style)
   gulp.watch('./src/js/**/*.js', script)
   gulp.watch('./src/img/**/*', image)

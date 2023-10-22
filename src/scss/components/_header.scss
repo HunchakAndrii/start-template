@@ -1,0 +1,19 @@
+.header__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+
+.header-nav__link {
+  color: black;
+  transition: .3s color ease;
+
+  &:hover {
+    color: rgba(black, .4);
+  }
+
+  & + & {
+    margin-left: 40px;
+  }
+}

@@ -1,11 +1,9 @@
 // Breakpoint
-$small:       359px;
-$mobile:      575px;
-$mobile-big:  767px;
-$tablet-sm:   991px;
-$tablet:      1199px;
-$laptop:      1399px;
-$desktop:     1599px;
+$sm:     576px;
+$md:     768px;
+$lg:     992px;
+$xl:     1200px;
+$xxl:    1600px;
 
 // Breakpoint Helpers
-$hamb: $tablet;
+$hamb:   $xl;

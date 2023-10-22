@@ -19,6 +19,7 @@
     "gulp": "^4.0.2",
     "gulp-esbuild": "^0.11.0",
     "gulp-if": "^3.0.0",
+    "gulp-nunjucks-render": "^2.2.3",
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^5.1.0",
     "sass": "^1.58.3",

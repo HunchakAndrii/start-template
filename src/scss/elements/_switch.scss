@@ -1,0 +1,22 @@
+input[role='switch'] {
+  width: 32px;
+  height: 16px;
+  border-radius: 8px;
+
+  &::after {
+    transform: translate(calc(-50% - 8px), -50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #dfdfdf;
+  }
+
+  &:checked {
+    background-color: #0d6efd;
+  }
+
+  &:checked::after {
+    transform: translate(calc(-50% + 8px), -50%);
+    background: white;
+  }
+}

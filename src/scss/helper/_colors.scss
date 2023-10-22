@@ -1,7 +1,35 @@
+$ui: (
+  'primary': #0d6efd,
+  'secondary': #6c757d,
+  'success': #198754,
+  'danger': #dc3545,
+  'warning': #ffc107,
+  'info': #0dcaf0,
+  'light': #f8f9fa,
+  'dark': #212529,
+);
+
+$ui-dark: (
+  'primary': #0d6efd,
+  'secondary': #6c757d,
+  'success': #198754,
+  'danger': #dc3545,
+  'light': #f8f9fa,
+);
+
+$ui-light: (
+  'warning': #ffc107,
+  'info': #0dcaf0,
+  'dark': #212529,
+);
+
 // Colors
-$primary: #FF3F3A;
-$secondary: #FFCF2D;
+$primary: #ff3f3a;
+$secondary: #ffcf2d;
 
 // Default
 $white: #fff;
-$black: #1E212C;
+$black: #1e212c;
+$light-gray: #f6f6f6;
+$light-blue: #ebf3ff;
+$violet: #465976;

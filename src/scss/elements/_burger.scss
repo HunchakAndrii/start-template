@@ -1,0 +1,50 @@
+$offset: 5;
+
+.burger {
+  position: relative;
+  width: 30px;
+  height: 30px;
+
+  &:focus-visible {
+    outline: 2px solid black;
+    border-radius: 4px;
+  }
+
+  & span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 20px;
+    height: 2px;
+    transition: 0.3s all ease;
+    border-radius: 1px;
+    background-color: black;
+
+    &:nth-child(1) {
+      transform: translate(-50%, calc(-50% - #{$offset}px));
+    }
+
+    &:nth-child(2) {
+      transform: translate(-50%, -50%);
+    }
+
+    &:nth-child(3) {
+      transform: translate(-50%, calc(-50% + #{$offset}px));
+    }
+  }
+
+  &.active span {
+    &:nth-child(1) {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}

@@ -3,7 +3,7 @@
 @import './helper/colors';
 @import './helper/breakpoint';
 @import './helper/mixins';
-@import './helper/kit';
+@import './helper/ui';
 
 @import './base/reset';
 @import './base/main';
@@ -14,10 +14,14 @@
 @import './elements/input';
 @import './elements/checkbox';
 @import './elements/radio';
-@import './elements/switch-group';
-@import './elements/tool-tip';
+@import './elements/switch';
+@import './elements/select';
+@import './elements/burger';
+@import './elements/spinner';
 
 @import './components/header';
 @import './components/footer';
+@import './components/section';
 
 @import './page/index';
+@import './page/about';

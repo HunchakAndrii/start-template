@@ -1,0 +1,27 @@
+select {
+  display: block;
+  width: 100%;
+  padding: 6px 36px 6px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 1.5;
+  appearance: none;
+  background-color: #fff;
+  background-image: url('/img/arrow.svg');
+  background-size: 16px 12px;
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+
+  &:focus:not(:disabled) {
+    border: 1px solid #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(#0d6efd, 0.25);
+  }
+
+  &:disabled {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    cursor: not-allowed;
+  }
+}

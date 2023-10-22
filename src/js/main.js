@@ -1,29 +1,9 @@
-const onWorkerReady = () => {
-  console.log('SW is ready')
-}
+const burger = document.querySelector('.burger')
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js')
+if(burger) {
+  burger.addEventListener('click', e => {
+    e.preventDefault()
 
-  navigator.serviceWorker.ready.then(onWorkerReady)
-} else {
-  console.log('Service worker is not supported')
-}
-
-if(document.querySelector('button')) {
-  document.querySelector('button').addEventListener('click', e => {
-    fetch('https://dummyjson.com/products')
-    .then(res => res.json())
-    .then(data => {
-      const ul = document.createElement('UL')
-      
-      data.products.forEach(item => {
-        const li = document.createElement('LI')
-        li.textContent = item.title
-        ul.append(li)
-      })
-      
-      document.querySelector('#app').append(ul)
-    })
-  }) 
+    burger.classList.toggle('active')
+  })
 }

@@ -1,18 +1,43 @@
-input[type="radio"] {
+input[type='radio'] {
+  position: relative;
   appearance: none;
   width: 16px;
   height: 16px;
-  border: 1px solid #405057;
+  border: 1px solid #dee2e6;
   border-radius: 50%;
+  transition: .3s ease;
+  transition-property: box-shadow, border-color;
 
-  &:focus,
-  &:active {
+  &:focus:not(:disabled),
+  &:active:not(:disabled) {
     outline: none;
-    box-shadow: 0 0 0 4px rgba(#0d6efd, .25);
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(#0d6efd, 0.25);
   }
 
   &:checked {
+    border-color: #0d6efd;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 105%;
+    height: 105%;
+    background-color: transparent;
+    transition: 0.3s all ease;
+    border-radius: 50%;
+    content: '';
+  }
+
+  &:checked::after {
     background-color: #0d6efd;
-    // border-color: red;
   }
 }

@@ -8,13 +8,13 @@ $container-max-widths: (
 
 .container {
   width: 100%;
-  padding-right: 12px;
-  padding-left: 12px;
+  padding-right: 20px;
+  padding-left: 20px;
   margin-right: auto;
   margin-left: auto;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: $xl) {
   .container {
     max-width: 1140px;
   }

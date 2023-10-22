@@ -1,127 +1,125 @@
-$theme-colors: (
-  'custom': #9461fb,
-  'primary': #0d6efd,
-  'secondary': #6c757d,
-  'success': #198754,
-  'info': #0dcaf0,
-  'warning': #ffc107,
-  'danger': #dc3545,
-  'light': #f8f9fa,
-  'dark': #212529,
-) !default;
-
 .btn {
-  display: inline-block;
   padding: 6px 12px;
-  border-radius: $radius;
-  text-align: center;
-  user-select: none;
-  border: 1px solid;
   font-size: 16px;
   line-height: 1.5;
-  transition: .3s all ease;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: 0.3s all ease;
 
-  &:active,
-  &:focus {
+  &:focus-visible {
     outline: none;
   }
 }
 
-@each $color, $value in $theme-colors {
+@each $color, $value in $ui-dark {
   .btn-#{$color} {
-    @if $color == 'light' {
-      background-color: $value;
-      border-color: $black;
-      color: $black;
+    color: white;
+    background: $value;
 
-      &:hover {
-        background-color: mix(white, $value, 10%);
-        border-color: mix(white, $value, 10%);
-      }
+    &:hover,
+    &:focus {
+      background: darken($value, 10%);
+    }
 
-      &:hover,
-      &:active,
-      &:focus {
-        background-color: mix(black, $value, 10%);
-        box-shadow: 0 0 0 5px rgba(black, 0.5);
-      }
+    &:active {
+      background: darken($value, 15%);
+    }
 
-      &:disabled {
-        opacity: 0.5;
-        box-shadow: none;
-        background-color: $value;
-        border-color: $black;
-        color: $black;
-      }
-    } @else {
-      background-color: $value;
-      border-color: $value;
-      color: $white;
-
-      &:hover {
-        background-color: mix(black, $value, 10%);
-        border-color: mix(black, $value, 10%);
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        background-color: mix(black, $value, 10%);
-        box-shadow: 0 0 0 5px rgba($value, 0.5);
-      }
-
-      &:disabled {
-        opacity: 0.5;
-        box-shadow: none;
-        background-color: $value;
-        border-color: $value;
-        color: $white;
-      }
+    &:focus-visible {
+      box-shadow: 0 0 0 4px rgba(darken($value, 15%), 0.5);
     }
   }
 }
 
-@each $color, $value in $theme-colors {
-  .btn-outline-#{$color} {
-    @if $color == 'light' {
-      background-color: transparent;
-      border-color: $black;
-      color: $black;
+@each $color, $value in $ui-light {
+  .btn-#{$color} {
+    color: black;
+    background: $value;
 
-      &:hover,
-      &:active,
-      &:focus {
-        color: $white;
-        background-color: $black;
-        box-shadow: 0 0 0 5px rgba($black, 0.5);
-      }
-
-      &:disabled {
-        opacity: 0.5;
-        box-shadow: none;
-        color: $white;
-        background-color: $black;
-      }
-    } @else {
-      background-color: transparent;
-      border-color: $value;
-      color: $value;
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: $white;
-        background-color: $value;
-        box-shadow: 0 0 0 5px rgba($value, 0.5);
-      }
-
-      &:disabled {
-        opacity: 0.5;
-        box-shadow: none;
-        color: $value;
-        background-color: transparent;
-      }
+    &:hover,
+    &:focus {
+      background: lighten($value, 10%);
     }
+
+    &:active {
+      background: lighten($value, 15%);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 4px rgba(lighten($value, 15%), 0.5);
+    }
+  }
+}
+
+.btn-light {
+  color: black;
+}
+
+.btn-dark {
+  color: white;
+}
+
+@each $color, $value in $ui-dark {
+  .btn-outline-#{$color} {
+    color: $value;
+    background: transparent;
+    border: 1px solid $value;
+
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      color: white;
+      background: $value;
+    }
+
+    &:active:not(:disabled) {
+      background: darken($value, 15%);
+    }
+
+    &:focus-visible:not(:disabled) {
+      box-shadow: 0 0 0 4px rgba(darken($value, 10%), 0.5);
+    }
+  }
+}
+
+@each $color, $value in $ui-light {
+  .btn-outline-#{$color} {
+    color: $value;
+    background: transparent;
+    border: 1px solid $value;
+
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      color: black;
+      background: $value;
+    }
+
+    &:active:not(:disabled) {
+      background: lighten($value, 10%);
+    }
+
+    &:focus-visible:not(:disabled) {
+      box-shadow: 0 0 0 4px rgba(lighten($value, 10%), 0.5);
+    }
+  }
+}
+
+.btn-outline-light {
+  border: 1px solid black;
+  color: black;
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    color: black;
+  }
+}
+
+.btn-outline-dark {
+  border: 1px solid white;
+  color: white;
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    color: white;
   }
 }
 
@@ -133,4 +131,11 @@ $theme-colors: (
 .btn-sm {
   padding: 4px 8px;
   font-size: 14px;
+}
+
+.btn {
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
