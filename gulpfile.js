@@ -76,13 +76,14 @@ const resource = () => {
   return gulp.src('./src/resource/**/*').pipe(gulp.dest('./dist/'))
 }
 
-const build = () => {
+const build = (done) => {
   html()
   style()
   script()
   image()
   font()
   resource()
+  done()
 }
 
 export { html, style, script, image, font, browserSync, build }
