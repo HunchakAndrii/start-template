@@ -6,6 +6,12 @@ body {
   line-height: 1.6;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(red, .5);
+}
+
 ::selection {
   background-color: $black;
   color: $white;

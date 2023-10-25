@@ -11,8 +11,24 @@
 </head>
 <body>
   {% include "../components/header.njk" %}
-  {% block content %}{% endblock %}
+  <main>
+    {% block content %}{% endblock %}
+  </main>
   {% include "../components/footer.njk" %}
+
+  <div data-popup="popupTest" class="popup" tabindex="-1" role="dialog">
+    <div class="popup__wrap">
+      <div class="popup__content">
+        <button class="popup__close">
+          <span></span>
+          <span></span>
+        </button>
+        <h2 class="title-h2 popup__title">Title Popup</h2>
+        <p class="text-p1 popup__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi reprehenderit provident error aperiam placeat sit perspiciatis fugit facere inventore fuga, quas, velit expedita quasi fugiat aut totam blanditiis! Molestias, corrupti.</p>
+        <button class="btn btn-primary popup__btn" >Close popup</button>
+      </div>
+    </div>
+  </div>
 
   <script src="./main.js"></script>
 </body>
