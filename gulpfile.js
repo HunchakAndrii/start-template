@@ -3,6 +3,7 @@ import gulpSass from 'gulp-sass'
 import nodeSass from 'sass'
 import nunjucksRender from 'gulp-nunjucks-render'
 import webpack from 'webpack-stream'
+import Dotenv from 'dotenv-webpack'
 import browsersync from 'browser-sync'
 
 const sass = gulpSass(nodeSass)
@@ -58,6 +59,7 @@ const script = () => {
         output: {
           filename: 'main.js',
         },
+        plugins: [new Dotenv()],
       })
     )
     .pipe(gulp.dest('./dist'))
@@ -76,7 +78,7 @@ const resource = () => {
   return gulp.src('./src/resource/**/*').pipe(gulp.dest('./dist/'))
 }
 
-const build = (done) => {
+const build = done => {
   html()
   style()
   script()
