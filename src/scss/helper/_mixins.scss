@@ -34,3 +34,9 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@mixin hover($property, $value) {
+  transition: $property, 0.3s;
+  &:hover {
+    $property: $value;
+}
